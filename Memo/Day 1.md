@@ -68,6 +68,37 @@ function check(a){
 
 filter 함수를 보면 첫 index는 해당 원소의 value, 두 번째 index는 해당 원소의 index를 제공합니다.
 
+map 함수는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열로 반환하는 함수입니다.
+
+map 함수는 변수 뿐만 아니라 함수도 가능합니다.
+
+Spread Operator : 연산자의 대상 배열 또는 iterable한 객체를 개별 요소로 분리시킵니다.
+
+Rest Parameter : Spread Operator를 사용하여 함수의 파라미터를 작성한 형태를 의미합니다. 
+
+```javascript
+var check = function () {
+  console.log(arguments);
+};
+check(2, 3);
+```
+
+위 코드와 같이 arguments로 인자값을 확인할 수 있지만, arguments는 유사 배열 객체입니다.
+
+하지만 rest parameter는 배열이므로 Array Object method를 사용할 수 있습니다.
+
+bind() : 메소드가 호출되면 새로운 함수를 생성합니다. 
+
+받게 되는 첫 인자의 value로는 this 키워드를 설정하고 이어지는 인자들은 바인드된 함수의 인수에 제공됩니다.   
+
+bind()를 사용하는 이유는 window 객체를 사용하고 싶지 않기 떄문입니다.
+
+대신 call, apply처럼 함수를 실행시키지 않습니다. 
+
+call과 apply의 유일한 차이점은, 첫 번째 인자(this를 대체할 값)를 제외하고, 실제 function에 필요한 parameter를 입력하는 방식이다. 
+
+call과는 다르게 apply함수는 두 번째 인자부터 모두 배열에 넣어야 한다.
+
 ### 🎞 Remark
 
-.
+당신은 이미 휼륭한 개발자입니다!🙌
