@@ -70,4 +70,4 @@ filter 함수를 보면 첫 index는 해당 원소의 value, 두 번째 index는
 
 ### 🎞 Remark
 
-Gist Link : [Go to Link](https://gist.github.com/blogSoul/b543f1080bab3d95ef0c9aeaca58ed65)
+.
