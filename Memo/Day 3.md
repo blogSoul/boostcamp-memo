@@ -8,6 +8,14 @@
 
 ### 캐시 교체 정책
 
+![20210722_085151](https://user-images.githubusercontent.com/42922298/126573794-14985556-737b-48fa-8a07-0b1bf0f057f6.png)
+
+![20210722_084759](https://user-images.githubusercontent.com/42922298/126573798-5818ac12-12e3-4597-92ef-c79d2051da85.png)
+
+![20210722_084902](https://user-images.githubusercontent.com/42922298/126573806-d2fb4b34-9102-41d5-9e2e-fc594a56002f.png)
+
+캐시는 실제 컴퓨터를 동작할 때 사용되는 기억장치이고 이 방식이 효율적이여서 서버에도 같은 방식을 적용합니다.
+
 캐시 교체 정책에는 여러 개가 존재합니다.
 
 1. LRU(= Least Recently Used) : 캐시 내에서 가장 오랫동안 참조되지 않은 블록을 교체하는 방식
