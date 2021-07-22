@@ -14,9 +14,10 @@
 
 ```javascript
 {
-    type : "int",
-    size : 8,
-    address : "0x1111"
+    type : type, // 어떤 타입으로 이루어졌는지
+    address : addressToHex(address), // 포인터 주소가 어떤지
+    count : 4, // 얼마나 할당되어 있는지 (포인터 크기는 4로 지정)
+    name : ""
 }
 ```
 
@@ -24,10 +25,13 @@
 
 ```javascript
 {
-    type : "int",
-    address : "0x1111"        
+    type : type, // 어떤 타입으로 이루어졌는지
+    address : addressToHex(address), // 포인터 주소가 어떤지
+    count : typeSize * count // 얼마나 할당되어 있는지
 }
 ```
+
+stack 명령어는 8byte로 설정
 
 ### 프로세스 메모리 모델
 
@@ -57,6 +61,24 @@ Process 객체를 사용하면 실제 프로세스 메모리가 어떻게 관리
 ![7KpvEn1](https://user-images.githubusercontent.com/42922298/126677978-67a1aea1-695e-411b-8aa7-15b3ea9fbbab.gif)
 
 이와 같이 stack에는 주소가 heap에는 실제 값을 가지고 있습니다.
+
+### javascript 동작원리
+
+V8 : 구글이 주도하여 C++로 작성된 고성능의 자바스크립트 & 웹 어셈블리 언어이다. (ECMAScript와 Web Assembly 표준에 맞게 구현)
+
+![20210723_074406](https://user-images.githubusercontent.com/42922298/126718325-fcc3e751-906d-44f6-9deb-1223c5bdbb60.png)
+
+1. javascript source code를 가져와 Parser에게 넘김
+   
+2. Parser는 parsing을 통해 AST(Abstract Syntax Tree)로 변환
+   
+3. AST를 interpreter를 통해 byte code로 변환 (=Ignition)
+   
+4. 그리고 bytecode를 실행함으로써 실제 작동하게 된다.
+   
+5. 그 중 자주 사용되는 코드는 TruboFan으로 보내진다.
+   
+6. TruboFan은 이 코드를 Optimized Machine Code로 compile한 후 사용.
 
 ### 🎞 Remark 
 
