@@ -6,7 +6,7 @@ NodeJS는 javascript를 브라우저 밖에서 사용할 수 있도록 만든 �
 
 command 창에서도 NodeJS를 사용할 수 있습니다.
 
-### cmd에 관해
+### 📘 cmd에 관해
 
 cd : 디렉토리 변경
 
@@ -18,7 +18,7 @@ mkdir : 디렉토리 생성
 
 rm : 파일 삭제
 
-### git에 관하여
+### 📘 git에 관하여
 
 git는 free and open source distributed version control system입니다.
 
@@ -58,7 +58,7 @@ Pull-request : 현업에서 가장 많이 사용하는 방식으로 기존 코�
 
 7. Merge 이후 branch 삭제 및 동기화
 
-### javascript summary
+### 📘 javascript summary
 
 ```javascript
 function check(a){
@@ -98,6 +98,12 @@ bind()를 사용하는 이유는 window 객체를 사용하고 싶지 않기 떄
 call과 apply의 유일한 차이점은, 첫 번째 인자(this를 대체할 값)를 제외하고, 실제 function에 필요한 parameter를 입력하는 방식이다. 
 
 call과는 다르게 apply함수는 두 번째 인자부터 모두 배열에 넣어야 한다.
+
+let, const의 차이점은 immutable 여부이다.
+
+let 은 변수에 재할당이 가능하다.
+
+const는 변수 재선언, 변수 재할당 모두 불가능하다.
 
 ### 🎞 Remark
 
