@@ -64,6 +64,28 @@ html parser는 script tag를 만나면 자바스크립트 코드를 실행하기
 
 > body 요소의 가장 아래에 script 태그를 위치해야 에러를 덜 발생하는 방법입니다.
 
+### 📘 well-formed XML 형식 검증에 관하여
+
+well-formed XML 문서 : XML 문서로서 가져야 하는 최소한의 필수 요건을 충족한 XML 문서
+
+* 필수 조건 :
+
+1. 루트(root) 요소를 하나만 가져야 합니다.
+
+2. 모든 XML 요소는 종료 태그를 가져야 합니다.
+
+3. 시작 태그와 종료 태그에 사용된 태그 이름이 대소문자까지 완벽하게 일치해야 합니다.
+
+4. 모든 XML 요소의 여닫는 순서가 반드시 정확하게 지켜져야 합니다.
+
+5. 모든 속성의 속성값이 따옴표로 둘러싸여 있어야 합니다.
+
+valid XML 문서 : well-formed XML 문서 + DTD(document type definition) or XSD(XML Schema Definition)
+
+DTD(document type definition) : 일반적인 문서 타입 정의(document type definition)
+
+규칙을 안 지키면 컴파일 오류가 생깁니다.
+
 ### 📘 XPath에 관하여
 
 XPath(=XML Path Language)는 W3C의 표준으로 확장 생성 언어 문서의 구조를 통해 경로 위에 지정한 구문을 사용하여 항목을 배치하고 처리하는 방법을 기술하는 언어입니다.
