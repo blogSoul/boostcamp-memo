@@ -133,6 +133,26 @@ closure는 블록을 값으로 갖는 실제 변수인 실제 일급 객체입�
 
 ### 📘 Higher Order Function에 관하여
 
+#### Array.prototype.reduce<U>(callback: (state: U, element: T, index: number, array: T[]) => U, firstState?: U):
+
+reduce()는 배열을 순회하며 각 요소에 대하여 이전의 콜백함수 실행 반환값을 전달하여 콜백함수를 실행하고 그 결과를 반환해주는 함수입니다.
+
+오른쪽부터 먼저 보는 reduceRight()도 존재합니다.
+
+![20210729_005951](https://user-images.githubusercontent.com/42922298/127358458-d9ff7a11-afa0-409c-bef8-08ff1d6911be.png)
+
+```javascript
+let a = ['a', 'a', 'b', 'b', 'b','c', 'c', 'd', 'd'];
+
+let b = a.reduce((x, y, idx, arr) => {
+    x[y] = ++x[y] || 1;
+    return x;
+}, {});
+
+console.log(b);
+// { a: 2, b: 3, c: 2, d: 2 }
+```
+
 #### Array.prototype.forEach(callback: (value: T, index: number, array: T[]) => void, thisArg?: any): void
 
 The .forEach() method executes a callback function on each of the elements in an array in order.
@@ -235,28 +255,6 @@ const result = [1, 2, 3, 4, 5].myFilter(function (item, index, self) {
 });
 
 console.log(result); // [ 1, 3, 5 ]
-```
-
-#### Array.prototype.reduce<U>(callback: (state: U, element: T, index: number, array: T[]) => U, firstState?: U):
-
-reduce()는 배열을 순회하며 각 요소에 대하여 이전의 콜백함수 실행 반환값을 전달하여 콜백함수를 실행하고 그 결과를 반환해주는 함수입니다.
-
-오른쪽부터 먼저 보는 reduceRight()도 존재합니다.
-
-```javascript
-const products = [
-    { id: 1, price: 100 },
-    { id: 2, price: 200 },
-    { id: 3, price: 300 }
-];
-
-// 프로퍼티 값을 합산
-const priceSum = products.reduce(function (pre, cur) {
-    console.log(pre, cur.price);
-    return pre + cur.price;
-}, 0);
-
-console.log(priceSum); // 600
 ```
 
 #### Array.prototype.some(callback: (value: T, index: number, array: Array) => boolean, thisArg?: any): boolean
