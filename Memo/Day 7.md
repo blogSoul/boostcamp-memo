@@ -114,4 +114,114 @@ console.log(p.m()); // 13
 
 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
 
+### 📘 Javascript 에서 프로토타입을 사용하는 방법
+
+```javascript
+function doSomething(){}
+//console.log( doSomething.prototype );
+// It does not matter how you declare the function, a
+//  function in JavaScript will always have a default
+//  prototype property.
+var doSomething = function(){};
+console.log( doSomething.prototype );
+```
+
+결과 :
+
+```javascript
+{
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+
+```javascript
+function doSomething(){}
+doSomething.prototype.foo = "bar";
+console.log( doSomething.prototype );
+```
+
+결과 :
+
+```javascript
+{
+    foo: "bar",
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+
+```javascript
+function doSomething(){}
+doSomething.prototype.foo = "bar"; // add a property onto the prototype
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value"; // add a property onto the object
+console.log( doSomeInstancing );
+```
+
+결과 : 
+
+```javascript
+{
+    prop: "some value",
+    __proto__: {
+        foo: "bar",
+        constructor: ƒ doSomething(),
+        __proto__: {
+            constructor: ƒ Object(),
+            hasOwnProperty: ƒ hasOwnProperty(),
+            isPrototypeOf: ƒ isPrototypeOf(),
+            propertyIsEnumerable: ƒ propertyIsEnumerable(),
+            toLocaleString: ƒ toLocaleString(),
+            toString: ƒ toString(),
+            valueOf: ƒ valueOf()
+        }
+    }
+}
+```
+
+doSomeInstancing의 __proto__의 __proto__의 __proto__는 존재할 수 없다(window.Object.prototype의 __proto__는 null이기 때문).
+
+```javascript
+function doSomething(){}
+doSomething.prototype.foo = "bar";
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";
+console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop);
+console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+console.log("doSomething.prop:           " + doSomething.prop);
+console.log("doSomething.foo:            " + doSomething.foo);
+console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
+```
+
+결과 :
+
+```javascript
+doSomeInstancing.prop:      some value
+doSomeInstancing.foo:       bar
+doSomething.prop:           undefined
+doSomething.foo:            undefined
+doSomething.prototype.prop: undefined
+doSomething.prototype.foo:  bar
+```
+
+참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+
 ### 🎞 Remark
