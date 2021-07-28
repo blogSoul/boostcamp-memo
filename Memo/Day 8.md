@@ -50,6 +50,8 @@ Stream과 Stream을 연결하자
 
 Data가 아닌 Process에 집중해서 프로그램을 만들자
 
+![20210728_235337](https://user-images.githubusercontent.com/42922298/127344655-c86ff6b6-e723-4cc5-8063-e0dd9e01e2c9.png)
+
 참고 사이트 : https://www.youtube.com/watch?v=cXi_CmZuBgg&t=1s
 
 ### 📘 closure에 대하여 
@@ -108,6 +110,26 @@ alert(counter2.value()); /* 0 */
 ```
 
 객체마다 기억하고 있는 scope는 다를 것입니다.
+
+#### 렉시컬 환경이란?
+
+전역 렉시컬 환경은 외부 참조를 갖지 않는다.
+
+렉시컬 환경은 블록단위로 생성되고 관리된다고 합니다.
+
+#### block과 closure의 차이점
+
+block is just a piece of code that can be composed by statements and declarations
+
+block은 명령문과 선언으로 구성될 수 있는 코드의 일부일 뿐입니다.
+
+closure is a real first-class object, a real variable that has a block as its value.
+
+closure는 블록을 값으로 갖는 실제 변수인 실제 일급 객체입니다.
+
+#### 변수에 따른 block 범위 차이
+
+![20210728_215345](https://user-images.githubusercontent.com/42922298/127344659-fb456fa5-5866-49f2-9a31-4039058b95fc.png)
 
 ### 📘 Higher Order Function에 관하여
 
