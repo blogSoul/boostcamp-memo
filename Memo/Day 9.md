@@ -168,3 +168,29 @@ obj.b.c === copiedObj.b.c //false
 `slice`도 가장 앝은 층만 복사되는 Shallow Copy가 이루어집니다.
 
 ### 🎞 Remark
+
+class 구조를 파악하기 쉽다.
+
+커밋 구조가 트리로 만들어져 있습니다.
+
+오브젝트 파일
+
+Blob 파일 : 파일들의 내용 SHA1 해싱 기법 적용
+
+Tree파일 : 파일 마다 Blob파일의 주소가 기록됩니다.
+
+.gitignore 기능을 추가해보는 것도 나쁘지 않을 것입니다.
+
+
+```javascript
+if (command === "add")
+    curRepo
+      ? curRepo.getFile(name)
+        ? curRepo.moveStage(name)
+        : console.log("해당 파일이 Working Directory에 없습니다.")
+      : console.log("저장소를 선택해주세요.");
+```
+
+새로운 Map() 에 기존의 Map()을 넣어주면 깊은 복사가 이루어집니다.
+
+ramda 라이브러리를 사용해서 깊은 복사가 가능합니다.
