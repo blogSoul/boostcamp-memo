@@ -108,6 +108,158 @@ Scavenge, 이것은 빠르나 불완전하다.
 
 Mark-Sweep, 이것은 느리지만 참조하지 않는 데이터를 회수한다.
 
+### 📘 자바스크립트의 호출 스택과 이벤트 루프
+
+자바스크립트는 single-thread기반의 언어입니다. 즉 하나의 호출 스택을 가지고 있습니다.
+
+자바스크립트는 이벤트 루프 기반의 비동기 방식으로 Non-Blocking IO를 지원해서 이벤트 루프를 이용해 동시성을 지원합니다.
+
+크롬 V8는 웹 브라우저를 만드는 데 기반을 제공하는 오픈소스 자바스크립트 엔진입니다.
+
+Non-blocking I/O : 입출력 처리는 시작만 해둔 채 완료되지 않은 상태에서 다른 처리 작업을 계속 진행할 수 있도록 멈추지 않고 입출력 처리를 기다리는 방법입니다. 
+
+* 자바스크립트 엔진의 구성요소
+
+![20210803_210943](https://user-images.githubusercontent.com/42922298/128078579-efc1c47a-a1bf-43de-8aa9-e9c4e3a6f131.png)
+
+비동기 요청은 자바스크립트 엔진을 구동하는 런타임 환경(브라우저나 Node.js)이 담당합니다.
+
+*런타임 환경이 제공하는 것
+
+Web APIs
+
+DOM(document)
+
+AJAX(XMLHttpRequest)
+
+Timeout(setTimeout)
+
+Event Loop
+
+자바스크립트는 호출 스택이 하나입니다.
+
+단점 : 브라우저에서 호출 스택에 실행할 함수가 쌓여있는 동안은 다른 일을 할 수 없습니다. 이 상태를 blocked라 합니다. 이 상태에서 브라우저는 렌더링을 할 수도 없고, 다른 코드를 실행할 수도 없습니다.
+
+* stackOverflow 예시
+
+```javascript
+var count = 0;
+function stack() {
+  console.log(++count);
+  stack();
+}
+stack();
+```
+
+이러한 문제를 해결하기 위해 이벤트 루프를 통한 동시성 확보를 해야 합니다.
+
+적절하게 task를 쪼개서 비동기 호출을 하고, 또 중간중간 렌더링등 UI 갱신이 이루어질 수 있도록 호출 스택이 빈 상태가 되도록 해주어야 한다.
+
+![20210804_150516](https://user-images.githubusercontent.com/42922298/128130292-2a9bec87-f281-474a-88ab-3121e3399525.png)
+
+이벤트 루프는 호출 스택과 Task Queue를 감시하면서, 만약 호출 스택이 비어있다면 이벤트 루프는 큐에서 첫 번째 Task를 호출 스택에 넣고 해당 Task가 수행됩니다.
+
+이러한 반복을 이벤트 루프에서는 tick이라고 합니다. 
+
+```javascript
+while (eventLoop.waitForTask()) {
+  const taskQueue = eventLoop.selectTaskQueue();
+  if (taskQueue.hasNextTask()) {
+    taskQueue.processNextTask();
+  }
+}
+```
+
+하지만 이벤트 루프에서 실제 실행 과정은 호출 스택에 올라가서 수행이 되므로 Run-to-completion 으로 동작합니다.
+
+Run-to-completion : Each message is processed completely before any other message is processed.
+
+* ES6에 들어오면서 새로운 컨셉인 Microtask Queue가 도입되었습니다.
+
+```javascript
+console.log("script start");
+
+setTimeout(function () {
+  console.log("setTimeout");
+}, 0);
+
+Promise.resolve()
+  .then(function () {
+    console.log("promise1");
+  })
+  .then(function () {
+    console.log("promise2");
+  });
+
+console.log("script end");
+// 실행결과
+// script start
+// script end
+// promise1
+// promise2
+// setTimeout
+```
+
+* 브라우저의 이벤트 루프 우선순위
+
+1. 이벤트 루프는 실행 순서를 보장하는 여러 queue에서 어떤 task를 꺼내서 실행시킬지 결정한다.
+
+2. 이를 통해 브라우저는 우선순위가 높은 task를 먼저 실행하도록 할 수 있다.
+
+3. microtask는 일반 task보다 높은 우선순위를 가지고 있다.
+
+> 해당 부분 애니메이션 확인하기 : https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+
+```javascript
+//1. script 실행 (log)
+console.log("script start");
+
+//2. script 실행 (setTimeout callback task queue에 등록)
+setTimeout(function () {
+    //11. Task 실행
+    console.log("setTimeout");
+}, 0);
+
+//3. script 실행 (Promise then callback Microtask queue에 등록)
+Promise.resolve()
+    .then(function () {
+        // 7. MicroTask 실행
+        console.log("promise1");
+    }) // 8. script 실행 (Promise then callback Microtask queue에 등록)
+    .then(function () {
+        // 9. MicroTask 실행
+        console.log("promise2");
+    });
+
+//4. script 실행 (AnimationFrame Animation frames에 등록)
+requestAnimationFrame(function () {
+    //10. Animation Frame 실행
+    console.log("animation");
+});
+
+//5. script 실행
+console.log("script end");
+//6. Stack의 모든 Task 실행완료
+```
+
+![20210804_151930](https://user-images.githubusercontent.com/42922298/128131642-be7f24cd-872a-4614-8c56-3936fdb6be58.png)
+
+* 이벤트 루프의 우선순위
+
+1. 호출 스택의 작업을 처리한다.
+
+2. 호출 스택이 비어있다면 microtask queue를 확인하고 작업이 있다면 microtask queue의 task를 작업을 호출 스택으로 넣고 처리한다.
+
+3. 만약 microtask가 비어있다면 Animation Frames를 확인하고 브라우저 렌더링이 발생한다.
+
+4. 1, 2, 3번 작업이 완료되었다면 task queue를 확인하고 작업이 있다면 task queue의 작업을 호출 스택으로 넣고 처리한다.
+
+Animation Frame은 Vsync에 맞춰서 호출되므로 task보다 후에 호출될 수도 있습니다. 
+
+Input과 같은 Event 처리는 Microtask, task, Animation Frame보다 높은 우선순위를 가집니다.
+
+참고 사이트 : https://iamsjy17.github.io/javascript/2019/07/20/how-to-works-js.html
+
 ### 🎞 Remark 
 
 stack에서 heap에 있는 기존의 값으로 변경하는 상황에서
