@@ -163,6 +163,46 @@ UDP에는 연결 자체가 없어서(connect 함수 불필요) 서버 소켓과 
 
 UDP로 짜면 비동기로 짜야 할거 같습니다!
 
+> 실제 네트워크 구조는 패키지 구성이 훨씬 구조적으로 잘짜여져 있습니다. 제가 만든 프로젝트처럼 제한 용량이 자유로운 객체로 이루어져 있지 않습니다.
+
+### 🎞 Site
+
+표준 규약 사이트 : 
+
+https://datatracker.ietf.org/doc/html/rfc793#page-30
+
+data/ask 이동 규약은 어떻게 짜는가?
+
+https://unabated.tistory.com/entry/TCP-%EC%8B%A0%EB%A2%B0%EC%A0%81%EC%9D%B8-%EC%A0%84%EC%86%A1-5-TCP%EB%8A%94-%EC%8B%A4%EC%A0%9C-Sequence-number%EC%99%80-Ack-number-field%EC%97%90-%EB%AC%B4%EC%97%87%EC%9D%84-%EC%B1%84%EC%9A%B0%EB%8A%94%EA%B0%80
+
+개발자 지망생을 위한 주관적 추천도서:
+
+https://kumo.notion.site/44da2a336b864d35bd642bc62a300708
+
 ### 🎞 Remark
 
-실제 네트워크 구조는 패키지 구성이 훨씬 구조적으로 잘짜여져 있습니다. 제가 만든 프로젝트처럼 제한 용량이 자유로운 객체로 이루어져 있지 않습니다.
+JSON.parse(myJSONString); : string to Oject
+
+uuid, readline-sync : 해당 패키지 확인하기
+
+4-Way handshake는 half close 기법을 사용합니다.
+
+종료할 때, 값에 대한 처리만 종료합니다.
+
+데이터 링크 계층
+
+Port는 하나의 IP에서 여러 프로그램들이 실행되고 통신할 수 있습니다.
+
+parseInt(~~, 16) 16진수로 바꿉니다.
+
+인터넷상에서 컴퓨터를 구분하기 위해서 port를 사용합니다.
+
+TCP 헤드은 체크섬이 없습니다.
+
+rfc 4122 규격 : uuid ,
+
+uuid : 고유 범용
+
+MSS :
+
+layer 1,2는 하드웨어로 이용됩니다.
