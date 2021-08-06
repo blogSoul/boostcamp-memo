@@ -97,4 +97,17 @@ getData().then(function(resolvedData) {
 });
 ```
 
+따라서 Promise로 설정하면 설계도를 그리듯이 비동기 방식을 흐름대로 이을 수 있을 것입니다.
+
+### 📘 객체와 모듈은 어떤 방식이 옳은 것인가?
+
+SOLID를 지키는 것이 제일 중요하다고 생각합니다!
+
+![20210806_104322](https://user-images.githubusercontent.com/42922298/128443404-79b97428-afde-4f73-9641-3508a7048fe8.png)
+![20210806_104416](https://user-images.githubusercontent.com/42922298/128443407-63e48107-8c3f-488f-ad47-3f95268ec7b2.png)
+![20210806_104441](https://user-images.githubusercontent.com/42922298/128443408-813a95fa-76e8-49c0-8e99-6ee2d7adb92a.png)
+![20210806_104528](https://user-images.githubusercontent.com/42922298/128443410-f3eb8cb9-82d4-44e8-b2f9-119c90279cd9.png)
+![20210806_104540](https://user-images.githubusercontent.com/42922298/128443412-1e5604b2-4747-4266-a0d1-ee45d316ffb2.png)
+![20210806_104554](https://user-images.githubusercontent.com/42922298/128443413-f7ae992b-f609-44eb-b04a-8e3310e382fa.png)
+
 ### 🎞 Remark
