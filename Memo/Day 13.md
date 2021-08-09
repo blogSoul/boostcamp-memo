@@ -6,7 +6,23 @@ ISO에서 개발한 모델로서 네트워크 프로토콜 디자인과 통신�
 
 ![image](https://user-images.githubusercontent.com/42922298/128276969-d391b0b4-6aa3-48f7-a737-f34e3041c7f5.png)
 
+#### 📘 PDU(Protocol data unit)
 
+PDU(Protocol data unit) : 각 계층별로 packet을 부르는 용어라고 생각.
+
+application layer : message
+
+transport layer : segment
+
+network layer : datagram
+
+link layer : frame
+
+송신자의 각각의 layer에서는 header를 씌웁니다. (disassemble, encapsulation)
+
+수신자의 각각의 layer에서는 자신의 맞는 header의 벗김. (assemble, decapsulation)
+
+Sockets : Application에서 transport layer로 message를 주는 창구
 #### 📘 물리 계층(Physical Layer)
 
 물리 계층은 말 그대로 하드웨어 전송 기술로 이루어져 있다.
@@ -99,7 +115,7 @@ TCP 3 Way Handshake는 TCP/IP프로토콜을 이용해서 통신을 하는 응�
 
 5. A클라이언트의 상태가 FIN-WAIT ->TIME-WAIT 으로 변경된다.
 
-* TCP vs UDP
+### 📘 TCP vs UDP
 
 TCP(Transmission Control Protocol): 인터넷상에서 데이터를 메세지의 형태로 보내기 위해 IP와 함께 사용하는 프로토콜
 
@@ -163,7 +179,33 @@ UDP에는 연결 자체가 없어서(connect 함수 불필요) 서버 소켓과 
 
 UDP로 짜면 비동기로 짜야 할거 같습니다!
 
-> 실제 네트워크 구조는 패키지 구성이 훨씬 구조적으로 잘짜여져 있습니다. 제가 만든 프로젝트처럼 제한 용량이 자유로운 객체로 이루어져 있지 않습니다.
+### 📘 실제 TCP와 제 프로젝트의 차이
+
+![20210809_104419](https://user-images.githubusercontent.com/42922298/128652948-1543cbf7-adc3-4ccb-81ec-832163179e73.png)
+
+실제 네트워크 구조는 패키지 구성이 훨씬 구조적으로 잘짜여져 있습니다. 제가 만든 프로젝트처럼 제한 용량이 자유로운 객체로 이루어져 있지 않습니다.
+
+실제 패킷은 메모리 제한이 있고 헤더가 있어 속성에 맞게 적용시켜줘야 합니다.
+
+### 📘 IP
+
+IP : internet Protocool
+
+![20210805_111931](https://user-images.githubusercontent.com/42922298/128403855-6ed00779-bb46-4c5e-bac7-15a33903935f.png)
+
+\r\n는 무슨 의미인가?
+
+![20210805_114933](https://user-images.githubusercontent.com/42922298/128403861-92bf4718-922d-4dbf-8b89-ae47986734ca.png)
+
+### 📘 PORT에 관하여 
+
+인터넷 프로토콜 스위트에서 포트(port)는 운영 체제 통신의 종단점입니다. 
+
+이 용어는 하드웨어 장치에도 사용되지만, 소프트웨어에서는 네트워크 서비스나 특정 프로세스를 식별하는 논리 단위입니다.
+
+PORT가 같으면 응용 프로그램은 같을 것입니다. 
+
+PORT가 다르면 당연히 다른 응용프로그램일 것이고 서로 다른 종단점이기 때문에 같은 응용 프로그램일 수 없습니다.
 
 ### 🎞 Site
 

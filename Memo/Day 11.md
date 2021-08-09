@@ -71,7 +71,9 @@
 
 1. 코어를 여러개 두어 멀티 코어 방식을 채택합니다.
 
-### 📘 WindowTimers.setTimeout()에 관하여 
+스레드가 무한히 늘어난다고 해도 그 많은 스레드를 전부 사용할 수 있도록 하기 위해선 물리적 단위인 core를 늘리는 방법 밖에 없습니다.
+
+### 📘 WindowTimers.setTimeout()에 관하여 (setTimeout 내부 동작 방식)
 
 ```
 var timeoutID = window.setTimeout(func[, delay, param1, param2, ...]);
@@ -89,7 +91,11 @@ setTimeout()과 setInterval() (en-US)는 같은 ID 공간을 공유하기 때문
 
 참고 사이트 : https://developer.mozilla.org/ko/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
 
+### 📘 정확도 높은 Timer를 구현하기 위한 방식
+
 현재 시간을 알려주는 함수인 Date().getTime()를 이용해서 start하는 기점과 end하는 지점을 측정해 차이를 계산해도 timer를 구현가능할 것으로 얘상합니다.
+
+Date().getTime()이 0.001초 단위까지 계산이 가능하므로 더 정확하게 계산이 가능해질 것입니다.
 
 ### 📘 뮤텍스(Mutex)와 세마포어(Semaphore)의 차이
 
@@ -114,3 +120,77 @@ setTimeout()과 setInterval() (en-US)는 같은 ID 공간을 공유하기 때문
 또한 공유된 자원의 데이터 혹은 임계영역(Critical Section) 등에 여러 Process 혹은 Thread가 접근하는 것을 막아줍니다.(즉, 동기화 대상이 하나 이상)
 
 ### 🎞 Remark
+
+```javascript
+this.processList.map((process) => {
+    prioList.push(process)
+    if (process !== this.runningProcess) {
+        process.priority -= 1
+    }
+})
+```
+
+worker thread를 이용하면 여러 개의 작업을 할 수 있습니다.
+
+critical section : 각 프로세스나 스레드가 공유 데이터를 접근하는 프로그램 코드 부분
+
+상호 배제의 조건 :
+
+1. 두 프로세스는 동시에 공유 자원에 진입할 수 없다.
+2. 프로세스의 속도나 프로세서 수에 영향을 받지 않는다.
+3. 공유 자원을 사용하는 프로세스만 다른 프로세스를 차단할 수 있다.
+4. 프로세스가 공유 자원을 사용하려고 너무 오래 기다려서는 안 된다.
+
+task queue를 사용하는 방법보다 micro task queue를 이용하면 좋을 거 같습니다.
+
+promise는 비동기 작업 이후에 나타나는 결과값입니다.
+
+메모리에 올라와 있지 않은 정적인 상태의 메모리를 프로그램이라고 합니다.
+
+재귀로도 setTimeOut을 사용할 수 도 있습니다.
+
+참고 사이트 : https://gist.github.com/gofeel8/167e621ad97647bcf7af4047e2f579a7
+
+- Multilevel Queue 방식 : 프로세스를 기준에 따라 여러 그룹으로 나눌 수 있다 그 그룹에 따라 큐를 두어 여러개의 큐를 사용하는 방식 ,큐마다 우선순위를 지정할수 있다
+
+- Multilevel Feedback Queue : 대기하는 큐에서 시간이 오래 걸리면 아래의 다른 큐로 프로세스를 옮기는 방식
+
+참고 사이트 : https://tulip-primula-da4.notion.site/25fe2d1ba5cd498aab1f6ccd25cd2908
+
+Promise API, Observer API, process.nextTick를 사용하면 더 좋은 timer를 만들 수 있습니다.
+
+실제 윈도우 DNS 서버, 마이크로소프트 같은 대형 웹사이트에선 라운드 로빈 방식을 씁니다.
+
+멀티 프로세서 :
+
+프로세서는 기계 명령어들을 순서대로 한 번에 하나씩 실행
+
+프로세서들은 상호연결 메카니즘( 시스템 버스 )을 통해 공유되는 주기억 장치와 I/O 장치에 접근
+
+즉, 프로세서가 여러 개 있는 것이 멀티 프로세서
+
+멀티 코어 :
+
+칩 멀티프로세서
+
+코어라고 불리는 두 개 이상의 프로세서가 다이라고 불리는 단일 실리콘 조각에 결합
+
+여러 개의 코어( 프로세서 )가 하나로 결합되어 있는 것이 멀티 코어
+
+멀티 프로그래밍, 멀티태스킹 : 
+
+주기억장치에 여러 사용자 프로그램을 적재하여 대기할 것 같은 프로그램이 있다면 다른 작업으로 제어를 넘긴다. 
+
+프로그램들이 대기에 들어간 틈을 이용해 돌아가며 실행시킬 수 있을 것
+
+프로그램 대기 시간을 이용하여 다른 프로그램에 제어를 넘기자는 것이 멀티 프로그래밍 혹은 멀티태스킹
+
+멀티 프로세싱 :
+
+한 개 이상의 컴퓨터 프로세서들이 협력하여 프로그램들을 처리하는 것
+
+같은 프로그램을 동시에 병렬로 처리하고 있는 여러 대의 컴퓨터들
+
+멀티 쓰레딩 :
+
+멀티 쓰레딩은 하나의 작업을 위해서 하나의 프로세스에서 여러 쓰레드를 생성하여 여러 CPU 코어를 사용하기 위해 코드를 작성하는 작업
