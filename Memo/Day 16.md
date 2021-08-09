@@ -1,5 +1,66 @@
-## 📕 Day  - BoostCamp
+## 📕 Day 16 - BoostCamp
 
-### 📘 에 관하여
+### 📘 response에 관하여
+
+response method는 아래와 같이 구성되어져 있습니다.
+
+```javascript
+"_readableState"
+"_events"
+"_eventsCount"
+"_maxListeners"
+"socket"
+"httpVersionMajor"
+"httpVersionMinor"
+"httpVersion"
+"complete"
+"headers"
+"rawHeaders"
+"trailers"
+"rawTrailers"
+"aborted"
+"upgrade"
+"url"
+"method"
+"statusCode"
+"statusMessage"
+"client"
+"_consuming"
+"_dumped"
+"req"
+"setTimeout"
+"_read"
+"destroy"
+"_addHeaderLines"
+"_addHeaderLine"
+"_dump"
+"_undestroy"
+"_destroy"
+"push"
+"unshift"
+"isPaused"
+"setEncoding"
+"read"
+"pipe"
+"unpipe"
+"on"
+"addListener"
+"removeListener"
+"off"
+"removeAllListeners"
+"resume"
+"pause"
+"wrap"
+"setMaxListeners"
+"getMaxListeners"
+"emit"
+"prependListener"
+"once"
+"prependOnceListener"
+"listeners"
+"rawListeners"
+"listenerCount"
+"eventNames"
+```
 
 ### 🎞 Remark
