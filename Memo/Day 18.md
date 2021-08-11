@@ -163,3 +163,17 @@ User management is unavailable
 제가 만들 프로젝트는 작업을 하기 전 모든 데이터를 읽어 json객체로 만드므로 json객체로 처리하면 충분히 join문을 구현할 수 있다고 생각합니다.
 
 ### 🎞 Remark
+
+csv package 링크 :
+
+https://www.npmjs.com/package/csv
+
+https://csv.js.org/
+
+csv-parser package 링크 :
+
+https://www.npmjs.com/package/csv-parser
+
+csv-writer package 링크 :
+
+https://www.npmjs.com/package/csv-writer

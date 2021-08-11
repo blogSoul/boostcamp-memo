@@ -63,6 +63,16 @@ response method는 아래와 같이 구성되어져 있습니다.
 "eventNames"
 ```
 
+cheerio 참고 코드 : 
+
+```javascript
+var list = [];
+$('div[id="list"]').find('div > div > a').each(function (index, element) {
+  list.push($(element).attr('href'));
+});
+console.dir(list);
+```
+
 ### 📘 웹 브라우저에 관하여
 
 ![20210726_233013](https://user-images.githubusercontent.com/42922298/127006273-de612d48-26f8-4f94-bee3-7b96b774445a.png)
@@ -131,4 +141,75 @@ setTimeout(() => {
 
 최대한 가깝게 만들기 위해선 http 요청을 보내는 서버를 만들면 가까워지지 않을까 생각이 듭니다.
 
+### 📘 Redirection에 대하여
+
+URL 리다이렉션 혹은 URL 포워딩은 페이지 따위의 실제 리소스, 폼 혹은 전체 웹 애플리케이션이 다른 URL에 위치하고 있는 상태에서 링크를 존속시키는 기술입니다. HTTP는 많은 목표를 위해 사용되는 이런 동작을 수행하기 위해 특별한 종류의 응답인 HTTP 리다이렉트를 제공합니다.
+
+사이트 유지관리가 진행 중인 상태에서의 일시적인 리다이렉션, 사이트 아키텍쳐의 변경 이후에도 외부 링크를 동작하는 상태로 유지시키기 위한 영구적인 리다이렉션, 파일 업로드 시 진행 상태 페이지 그리고 그 외의 수많은 리다이렉션들을 예로 들 수 있습니다.
+
+HTTP 리다이렉트는 3xx 상태 코드를 지닌 응답입니다.
+
+HTTP 리다이렉트가 리다이렉션을 정의하는 유일한 방법은 아닙니다. 
+
+<meta> 엘리먼트를 사용하는 HTML 리다이렉션과 DOM을 사용하는 자바스크립트 리다이렉션이 있습니다.
+
+```html
+<head>
+  <meta http-equiv="refresh" content="0;URL='http://www.example.com/'" />
+</head>
+```
+
+```javascript
+window.location = "http://www.example.com/";
+```
+
 ### 🎞 Remark
+
+cheerio 사이트 : https://cheerio.js.org/
+
+nodejs 시간 측정에 관하여 : https://blog.risingstack.com/measuring-http-timings-node-js/
+
+#### 브라우저는 어떻게 동작하는가? : `https://d2.naver.com/helloworld/59361`
+
+script defer는 돔트리가 완성된 후 실행되는 태그(백그라운드에서 활동)
+
+script async는 돔트리가 완성된 이전 실행되는 태그  
+
+개발자 도구에서 waterfall을 분석하라.
+
+style 태그는 header에 작성해야 합니다.
+
+media 쿼리를 이용하면 더 원활하게 돌아갈 것입니다.
+
+큰 img에 대한 태그도 로딩 문제가 생길 수 있습니다.
+
+동기로 만드는 코드를 비동기로 만드는 것이 중요합니다.
+
+re리젝션, cs, 웹 게임, 실시간으로 주고 받은 데이터가 많을 때 -> 비동기를 사용합니다.
+
+xhr : 서버와 인터렉선을 하는데 사용하는 방식 <= 조사해보기
+
+xhr : 싱글 페이지 앱, 비동기 통신을 하는 것이 많습니다. 홈페이지의 특성과 같음.
+여러가지 요인이 있을 수 있습니다.
+
+정밀하게에 대한 중요한 점은 언제 어디서 측정하는게 중요하는 것이라고 합니다.
+
+* request 모듈에는 Readable이 최선이지 않을까?
+
+이유 : 읽기가 마무리되는 시점에 객체가 생성이 되서.... 그래도 readable이 제일 좋아보입니다.(결론)
+
+`#` : private 함수를 지정하는 방법
+
+* 네트워크 탭에서 어떻게 이루어지는가?
+
+크롬은 프로세스 단위로 사파리는 스레드 단위
+
+메모리에 캐시가 되는 것, disk캐시에 저장이 되는 것이 있는데,
+
+둘은 어떻게 나눠질까? 브라우저가 종료하면 메모리 캐시에서 disk 캐시로 이동합니다.
+
+브라우져 캐시, 메모리 캐시로 나눠집니다.
+
+모든 것을 메모리 캐시, disk 캐시 둘다 넣는데 , 이중 백업을 한다.
+
+캐싱 : 로컬 캐싱, 서버 캐싱 x-age,
