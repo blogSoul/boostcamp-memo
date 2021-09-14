@@ -83,3 +83,7 @@ HATEOAS로 Content-Location를 대체할 수 있다.
 ### 🎞 Remark
 
 참고 사이트 : https://sanghaklee.tistory.com/57
+
+책 추천 : http://www.yes24.com/Product/Goods/94462254
+
+책 추천 : https://m.search.daum.net/kakao?w=bookpage&bookId=5140806&tab=introduction&DA=SH2&q=%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B6%80%ED%8A%B8%EC%99%80

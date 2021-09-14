@@ -50,4 +50,10 @@ Detached HEAD : HEAD가 브랜치를 통해 간접적으로 commit을 가리키�
 
 HEAD는 일반적으로 이름이 붙여진 branch를 참조합니다. Ex) master
 
+### 📘 git rebase
+
+> 참고 사이트 : https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
+
+
+
 ### 🎞 Remark
