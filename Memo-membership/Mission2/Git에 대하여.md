@@ -54,6 +54,8 @@ HEAD는 일반적으로 이름이 붙여진 branch를 참조합니다. Ex) maste
 
 > 참고 사이트 : https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
 
+### 📘 git merge
 
+> 참고 사이트 : https://ssungkang.tistory.com/entry/07git-merge-%EA%B7%B8-%EC%A2%85%EB%A5%98%EC%99%80-%EC%B6%A9%EB%8F%8C-%ED%95%B4%EA%B2%B0
 
 ### 🎞 Remark
