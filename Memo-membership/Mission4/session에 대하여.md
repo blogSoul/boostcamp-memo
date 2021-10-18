@@ -2,6 +2,8 @@
 
 ### 📘 session에 대하여
 
+![image](https://user-images.githubusercontent.com/42922298/137634672-e259e469-1c3d-4e4a-9343-5c17a12ed9c4.png)
+
 * session 라우터 예제
 
 ```javascript
@@ -61,5 +63,13 @@ router.get('/logout', function(req, res, next) {
 
 module.exports = router;
 ```
+
+* github session 
+
+공식 문서 : https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps
+
+참고 사이트 : https://devhyun.com/blog/post/15
+
+어플 확인 : https://github.com/settings/developers
 
 ### 🎞 Remark
